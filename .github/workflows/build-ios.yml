@@ -44,18 +44,7 @@ jobs:
             --app-icon AppIcon \
             --output-partial-info-plist /tmp/actool_out/partial-info.plist \
             --target-device iphone
-          python3 -c "
-import plistlib
-app_plist = '$APP_PATH/Info.plist'
-with open(app_plist, 'rb') as f:
-    d = plistlib.load(f)
-with open('/tmp/actool_out/partial-info.plist', 'rb') as f:
-    p = plistlib.load(f)
-d.update(p)
-with open(app_plist, 'wb') as f:
-    plistlib.dump(d, f)
-print('merged keys:', list(p.keys()))
-"
+          python3 -c "import plistlib; d = plistlib.load(open('$APP_PATH/Info.plist', 'rb')); p = plistlib.load(open('/tmp/actool_out/partial-info.plist', 'rb')); d.update(p); plistlib.dump(d, open('$APP_PATH/Info.plist', 'wb')); print('merged keys:', list(p.keys()))"
           echo "--- after ---"
           ls -la "$APP_PATH"
           plutil -p "$APP_PATH/Info.plist" | grep -i icon
