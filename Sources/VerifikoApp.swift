@@ -5,7 +5,7 @@ import WebKit
 struct VerifikoApp: App {
     var body: some Scene {
         WindowGroup {
-            WebView(url: URL(string: "https://fake-news-detector-shqip-2jjmg6l3uqqjs2mjpg3wkr.streamlit.app/")!)
+            WebView(url: URL(string: "https://fake-news-detector-shqip-2jjmg6l3uqqjs2mjpg3wkr.streamlit.app/?embed=true")!)
                 .ignoresSafeArea()
         }
     }
